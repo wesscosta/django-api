@@ -78,7 +78,7 @@
             event.preventDefault();
             const text = document.getElementById('text').value;
 
-            const response = await fetch('http://127.0.0.1:8000/api/text-to-speech/', {
+            const response = await fetch('http://127.0.0.1:8001/api/text-to-audio/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: text })
@@ -100,7 +100,7 @@
             const formData = new FormData();
             formData.append('audio', document.getElementById('audioFile').files[0]);
 
-            const response = await fetch('http://127.0.0.1:8001/api/audio-to-text/', {
+            const response = await fetch('http://127.0.0.1:8000/api/transcribe/', {
                 method: 'POST',
                 body: formData
             });
@@ -116,28 +116,28 @@
             }
         });
 
-        // Download de Vídeos
-        document.getElementById('youtubeDownloadForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const youtubeLink = document.getElementById('youtubeLink').value;
-            const format = document.getElementById('format').value;
+        // // Download de Vídeos
+        // document.getElementById('youtubeDownloadForm').addEventListener('submit', async (event) => {
+        //     event.preventDefault();
+        //     const youtubeLink = document.getElementById('youtubeLink').value;
+        //     const format = document.getElementById('format').value;
 
-            const response = await fetch('http://127.0.0.1:8002/api/youtube-download/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ url: youtubeLink, format: format })
-            });
+        //     const response = await fetch('http://127.0.0.1:8002/api/youtube-download/', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json' },
+        //         body: JSON.stringify({ url: youtubeLink, format: format })
+        //     });
 
-            if (response.ok) {
-                const blob = await response.blob();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = `youtube.${format === 'audio' ? 'mp3' : 'mp4'}`;
-                link.click();
-            } else {
-                alert('Erro ao baixar vídeo.');
-            }
-        });
+        //     if (response.ok) {
+        //         const blob = await response.blob();
+        //         const link = document.createElement('a');
+        //         link.href = URL.createObjectURL(blob);
+        //         link.download = `youtube.${format === 'audio' ? 'mp3' : 'mp4'}`;
+        //         link.click();
+        //     } else {
+        //         alert('Erro ao baixar vídeo.');
+        //     }
+        // });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
