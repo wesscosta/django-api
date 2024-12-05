@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENACIA - Chatbot</title>
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById('userMessage').value;
+            const responseDiv = document.getElementById('response');
+
+            const response = await fetch('/chatbot/ask/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            if (data.response) {
+                responseDiv.innerHTML = `<p>${data.response}</p>`;
+            } else {
+                responseDiv.innerHTML = `<p>Erro: ${data.error}</p>`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>SENACIA - Chatbot</h1>
+    <div>
+        <label for="userMessage">Digite sua pergunta:</label><br>
+        <input type="text" id="userMessage" placeholder="Digite aqui..." required>
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+    <div id="response" style="margin-top: 20px; font-size: 18px;"></div>
+</body>
+</html>
