@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Hub</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Service Hub</h1>
+    <p>Integrando os serviços: Transcrição de Áudio, Download de Vídeo, e Texto para Áudio</p>
+
+    <!-- Seleção de Serviço -->
+    <div class="service-selection">
+      <label for="service">Selecione o Serviço:</label>
+      <select id="service">
+        <option value="audio_to_text">Transcrição de Áudio</option>
+        <option value="video_download">Download de Vídeo</option>
+        <option value="text_to_audio">Texto para Áudio</option>
+      </select>
+    </div>
+
+    <!-- Área de Upload e Entrada de Dados -->
+    <div id="audio-to-text-form" class="form-section">
+      <h2>Transcrição de Áudio</h2>
+      <input type="file" id="audio-file" accept="audio/*">
+      <button onclick="submitAudio()">Enviar Áudio</button>
+    </div>
+
+    <div id="video-download-form" class="form-section hidden">
+      <h2>Download de Vídeo</h2>
+      <input type="text" id="video-url" placeholder="URL do vídeo">
+      <select id="video-format">
+        <option value="mp4">MP4</option>
+        <option value="mp3">MP3</option>
+      </select>
+      <button onclick="submitVideo()">Baixar Vídeo</button>
+    </div>
+
+    <div id="text-to-audio-form" class="form-section hidden">
+      <h2>Texto para Áudio</h2>
+      <textarea id="text-input" placeholder="Digite o texto aqui"></textarea>
+      <button onclick="submitText()">Converter para Áudio</button>
+    </div>
+
+    <!-- Resultado -->
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

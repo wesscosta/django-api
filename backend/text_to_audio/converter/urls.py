@@ -3,4 +3,5 @@ from .views import TextToAudioView
 
 urlpatterns = [
     path('text-to-audio/', TextToAudioView.as_view(), name='text-to-audio'),
-]
+] 
+

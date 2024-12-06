@@ -11,9 +11,9 @@
           });
 
           if (response.ok) {
-              const blob = await response.blob();
+            //   const blob = await response.blob();
               const audioPlayer = document.getElementById('audioPlayer');
-              audioPlayer.src = URL.createObjectURL(blob);
+              audioPlayer.src = `http://127.0.0.1:8001/media/audio_output.mp3`;
               audioPlayer.style.display = 'block';
           } else {
               alert('Erro ao converter texto para áudio.');
